@@ -13,7 +13,7 @@ const App = () => {
   // Creating a function to fetch the data
   const getData = async () => {
     const response = await fetch(
-      "https://api.spoonacular.com/recipes/complexSearch?apiKey=0e02b9ddd3ed4353b59878c141584697&query=pasta&maxFat=25&number=2&addRecipeInformation=true"
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=pasta&maxFat=25&number=2&addRecipeInformation=true`
     );
     const results = await response.json();
     console.log(results.results);
