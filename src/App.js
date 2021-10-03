@@ -12,17 +12,17 @@ const App = () => {
   }, []);
   // Creating a function to fetch the data
   const getData = async () => {
-    const res = await fetch(
-      "https://api.spoonacular.com/recipes/complexSearch?apiKey=0e02b9ddd3ed4353b59878c141584697&query=pasta"
+    const response = await fetch(
+      "https://api.spoonacular.com/recipes/complexSearch?apiKey=0e02b9ddd3ed4353b59878c141584697&query=pasta&maxFat=25&number=2&addRecipeInformation=true"
     );
-    const response = await res.json();
-    console.log(response.results);
-    setRecipes(response.results);
+    const results = await response.json();
+    console.log(results.results);
+    setRecipes(results.results);
   };
 
   return (
     <div>
-      <h1>🥔 FoodMania 🥔</h1>
+      <h1>Food Recipe App </h1>
       <form>
         <input type="text" placeholder="Search for recipes" />
         <button type="submit" className="btn">
@@ -30,9 +30,18 @@ const App = () => {
         </button>
       </form>
       <div className="recipes">
-        {recipes.map((recipe) => (
-          <Recipe key={recipe.id} label={recipe.title} image={recipe.image} />
-        ))}
+        {/* map over our array and pass our data from API*/}
+        {recipes !== [] &&
+          recipes.map((recipe) => (
+            <Recipe
+              key={recipe.id}
+              label={recipe.title}
+              healthScore={recipe.healthScore}
+              image={recipe.image}
+              url={recipe.sourceUrl}
+              // ingredients={recipe.analyzedInstructions.steps}
+            />
+          ))}
       </div>
     </div>
   );

@@ -1,20 +1,18 @@
 import React from "react";
 import "./Recipe.css";
-const Recipe = ({ label, image }) => {
+const Recipe = ({ label, image, healthScore, url }) => {
   return (
     <div className="recipe">
       <div className="recipe-column">
         <div className="content">
           <h2>{label}</h2>
-          <ul>
-            <li>Ingredients</li>
-          </ul>
-          <a href={image} target="_blank">
-            URL
+          <h3>Health Score: {healthScore}</h3>
+          <a href={url} target="_blank" rel="noreferrer noopener">
+            About Recipe
           </a>
-        </div>
-        <div className="recipe-img">
-          <img />
+          <br />
+          <br />
+          <img src={image} alt="Food" />
         </div>
       </div>
     </div>
