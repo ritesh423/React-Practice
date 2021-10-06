@@ -4,16 +4,25 @@ import Recipe from "./components/Recipe";
 
 const App = () => {
   //All  States
-
   const [recipes, setRecipes] = useState([]);
+  const [search, setSearch] = useState("");
+  const [query, setQuery] = useState("");
+
+  // Creating a function to fetch the data
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    // setQuery for the finished search recipe
+    setQuery(search);
+  };
 
   useEffect(() => {
     getData();
-  }, []);
-  // Creating a function to fetch the data
+  }, [query]);
+
   const getData = async () => {
     const response = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=pasta&maxFat=25&number=2&addRecipeInformation=true`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${query}&maxFat=25&number=4&addRecipeInformation=true`
     );
     const results = await response.json();
     console.log(results.results);
@@ -23,8 +32,12 @@ const App = () => {
   return (
     <div>
       <h1>Food Recipe App </h1>
-      <form>
-        <input type="text" placeholder="Search for recipes" />
+      <form onClick={onSubmit}>
+        <input
+          type="text"
+          placeholder="Search for recipes"
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <button type="submit" className="btn">
           Search
         </button>
