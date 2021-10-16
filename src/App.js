@@ -8,26 +8,27 @@ const App = () => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
 
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${query}&maxFat=25&number=4&addRecipeInformation=true`;
+
   // Creating a function to fetch the data
 
   const onSubmit = (e) => {
     e.preventDefault();
     // setQuery for the finished search recipe
     setQuery(search);
+    setSearch("");
+  };
+
+  const getData = async () => {
+    const response = await fetch(url);
+    const results = await response.json();
+    console.log(results.results);
+    setRecipes(results.results);
   };
 
   useEffect(() => {
     getData();
   }, [query]);
-
-  const getData = async () => {
-    const response = await fetch(
-      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${query}&maxFat=25&number=4&addRecipeInformation=true`
-    );
-    const results = await response.json();
-    console.log(results.results);
-    setRecipes(results.results);
-  };
 
   return (
     <div>
