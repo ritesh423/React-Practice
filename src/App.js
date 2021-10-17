@@ -8,7 +8,7 @@ const App = () => {
   const [search, setSearch] = useState("");
   const [query, setQuery] = useState("");
 
-  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${query}&maxFat=25&number=4&addRecipeInformation=true`;
+  const url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${query}&number=4&addRecipeInformation=true`;
 
   // Creating a function to fetch the data
 
@@ -32,9 +32,10 @@ const App = () => {
 
   return (
     <div>
-      <h1>Food Recipe App </h1>
+      <h1 className="heading">FoodMainia 🍕</h1>
       <form onClick={onSubmit}>
         <input
+          className="search_food"
           type="text"
           placeholder="Search for recipes"
           onChange={(e) => setSearch(e.target.value)}

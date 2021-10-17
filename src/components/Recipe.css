@@ -1,5 +1,13 @@
 body {
   background-color: black;
+  font-family: "Montserrat", cursive;
+  color: white;
+}
+
+.heading {
+  font-family: "Kavoon", cursive;
+  font-size: 3em;
+  font-weight: lighter;
 }
 
 .recipe {
@@ -24,7 +32,29 @@ body {
 }
 
 .content img {
+  object-fit: cover;
   width: 300px;
   height: 220px;
   margin-bottom: 1rem;
+}
+
+.search_food {
+  outline: none;
+  margin-right: 0.3rem;
+  width: 15%;
+  min-height: 25px;
+  -webkit-transition: 1s; /* Safari */
+}
+
+input[type="text"]:hover {
+  box-shadow: 0 0 5pt 0.5pt #d3d3d3;
+}
+input[type="text"]:focus {
+  box-shadow: 0 0 5pt 2pt #d3d3d3;
+  outline-width: 0px;
+}
+
+.btn {
+  min-height: 2.3em;
+  width: 6.5%;
 }
